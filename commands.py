@@ -1,15 +1,11 @@
 import click
-import pyfiglet
 import sys
 import socket
 from datetime import datetime
 
-ascii_banner = pyfiglet.figlet_format("PY SCAN")
-print(ascii_banner)
-
-@click.command()
-@click.option('--scan', help='Perform a scan on a target IP')
-
+@click.command(help='Perform scan(s) on a target.')
+@click.option('-s','--scan', help='Perform a scan on a target IP')
+# @click.argument("target", required=False)
 def scan(scan):
     """Simple function that scans an IP to check for open ports."""
     target = scan
@@ -55,6 +51,3 @@ def scan(scan):
     except socket.error:
             print("\n Server not responding !!!!")
             sys.exit()
-
-if __name__ == '__main__':
-    scan()
